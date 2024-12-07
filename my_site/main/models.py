@@ -5,7 +5,6 @@ from django.db import models
 
 class User(AbstractUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(max_length=150, unique=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
