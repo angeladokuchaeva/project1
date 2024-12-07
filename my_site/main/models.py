@@ -1,5 +1,6 @@
 import uuid
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxLengthValidator
 from django.db import models
 
 
@@ -37,4 +38,6 @@ class Impression(models.Model):
     impression_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='impressions')
     country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='impressions')
-    description = models.TextField()
+    description = models.TextField(
+        validators=[MaxLengthValidator(1000)],
+    )
